@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import datetime
 from sklearn.linear_model import LinearRegression
-review_score = pd.read_csv("C:\\Users\\marce\\Downloads\\review_score.csv")
-rfm_df = pd.read_csv("C:\\Users\\marce\\Downloads\\rfm_data.csv")
+review_score = pd.read_csv("review_score.csv")
+rfm_df = pd.read_csv("rfm_data.csv")
 
 # Convert 'review_year_day' to datetime
 review_score['review_year_day'] = pd.to_datetime(review_score['review_year_day'])
