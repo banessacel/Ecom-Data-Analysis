@@ -7,13 +7,13 @@ pip install -r requirements.txt
 
 ## Setup Environment - Shell/Terminal
 ```
-mkdir ecom_analysis
-cd ecom_analysis
+mkdir Proyek_Analisis_Data
+cd Proyek_Analisis_Data
 pipenv install
 pipenv shell
 pip install -r requirements.txt```
 ```
 ## Run steamlit app
 ```
-streamlit run EcomStreamlit.py
+streamlit run dashboard.py
 ```
