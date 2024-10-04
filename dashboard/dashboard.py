@@ -73,6 +73,25 @@ ax_monetary.set_ylabel('Number of Sellers')
 ax_monetary.tick_params(axis='x', rotation=45)
 st.pyplot(fig_monetary)
 
+# Visualization: Scatter Plot with Linear Regression Line
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=rfm_df, x='Frequency', y='Monetary', hue='RFM_Score', palette='viridis', size='Frequency', sizes=(20, 200))
+sns.regplot(data=rfm_df, x='Frequency', y='Monetary', scatter=False, color='red', line_kws={'label': 'Linear Fit'})
+
+# Adding titles and labels
+plt.title('Frequency vs. Monetary Score with Linear Regression Line')
+plt.xlabel('Frequency of Reviews')
+plt.ylabel('Average Review Score')
+plt.legend(title='RFM Score', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+
+# Display the plot in Streamlit
+st.pyplot(plt)
+
+st.markdown("""
+The average review score shows no correlation with the number of sales made by the seller. This observation implies that consumers in the e-commerce sector are not significantly influenced by the sales figures of a seller when deciding which products to purchase. The majority of the frequency of selling is clustered on the left side of the graph, indicating that most sellers have a low frequency of sales, specifically between 0 and 50 sales. As a result, sellers seeking to enhance their sales performance should focus primarily on analyzing their review scores, particularly those with lower ratings. The majority of review scores fall within the range of 4 to 5, suggesting that while customer experiences are generally positive, there remains a significant number of sellers who are not reaching their full sales potential. By identifying areas where customer feedback indicates dissatisfaction, sellers can implement targeted improvements in their services, product quality, or customer interactions. This approach not only helps in addressing the issues highlighted in low reviews but also fosters customer loyalty and can lead to an increase in sales over time.""")
+
+st.header("Question 2: How is the performance of review scores as time series data?")
 
 X = np.array(range(len(review_score))).reshape(-1, 1)  # Day numbers as X
 y = review_score['avg_review_score'].values  # Average review scores as y
@@ -103,26 +122,6 @@ plt.legend()
 # Display the plot in Streamlit
 st.pyplot(plt)
 
-st.markdown("""
-The average review score shows no correlation with the number of sales made by the seller. This observation implies that consumers in the e-commerce sector are not significantly influenced by the sales figures of a seller when deciding which products to purchase. The majority of the frequency of selling is clustered on the left side of the graph, indicating that most sellers have a low frequency of sales, specifically between 0 and 50 sales. As a result, sellers seeking to enhance their sales performance should focus primarily on analyzing their review scores, particularly those with lower ratings. The majority of review scores fall within the range of 4 to 5, suggesting that while customer experiences are generally positive, there remains a significant number of sellers who are not reaching their full sales potential. By identifying areas where customer feedback indicates dissatisfaction, sellers can implement targeted improvements in their services, product quality, or customer interactions. This approach not only helps in addressing the issues highlighted in low reviews but also fosters customer loyalty and can lead to an increase in sales over time.""")
-
-
-st.header("Question 2: How is the performance of review scores as time series data?")
-
-# Visualization: Scatter Plot with Linear Regression Line
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=rfm_df, x='Frequency', y='Monetary', hue='RFM_Score', palette='viridis', size='Frequency', sizes=(20, 200))
-sns.regplot(data=rfm_df, x='Frequency', y='Monetary', scatter=False, color='red', line_kws={'label': 'Linear Fit'})
-
-# Adding titles and labels
-plt.title('Frequency vs. Monetary Score with Linear Regression Line')
-plt.xlabel('Frequency of Reviews')
-plt.ylabel('Average Review Score')
-plt.legend(title='RFM Score', bbox_to_anchor=(1.05, 1), loc='upper left')
-plt.tight_layout()
-
-# Display the plot in Streamlit
-st.pyplot(plt)
 st.markdown("""
 Overall, customer satisfaction within the e-commerce landscape is witnessing a steady improvement each day. This trend suggests that e-commerce platforms are actively working to enhance their services year after year, contributing to a higher level of customer satisfaction. The insights drawn from seller review scores are vital in this context, as they serve as a direct indicator of consumer perceptions and experiences. Therefore, it is crucial for sellers to take note of those who consistently receive low review ratings. By doing so, they can gain valuable insights into the specific aspects of their offerings or services that may require enhancement. Ultimately, focusing on improving customer experience based on feedback will not only elevate individual seller performance but also strengthen the overall reputation of the e-commerce marketplace.
 """)
